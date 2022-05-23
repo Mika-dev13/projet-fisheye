@@ -175,14 +175,17 @@ const selectDropdown = document.querySelector("#dropdown");
 const options = document.querySelectorAll(".option");
 const selectLabel = document.querySelector("#select-label");
 const photographerGalery = document.querySelector(".photographerGalery");
+const btnArrow = document.querySelector(".btn-arrow");
 
 button.addEventListener("click", function (e) {
 	e.preventDefault();
 	toggleHidden();
+	
 });
 
 function toggleHidden() {
 	selectDropdown.classList.toggle("hidden");
+	btnArrow.classList.toggle("btn-rotate");
 }
 
 function setSelectTitle(e) {
