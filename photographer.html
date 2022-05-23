@@ -19,14 +19,49 @@
       <div class="photograph-header container">
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </div>
-      <div class="custom-select">
+      <!-- <div class="custom-select">
         <label for="select" >Trier par</label>
         <select name="select" id="select">
           <option value="popularite">Popularité</option>
           <option value="date">Date</option>
           <option value="titre">Titre</option>
         </select>
+      </div> -->
+
+      <!-- <div class="select-custom">
+        <p class="sort-text">Trier par</p>
+          <div class="sort-wrapper">
+            <button class="btn-sort">
+              <span class="btn-text">Popularité</span>
+              <div class="btn-arrow"></div>
+            </button>
+            <ul class="ul-sort">
+              <li class="li-date">Date</li>
+              <li class="li-title">Titre</li>
+            </ul>
+          </div>
+      </div> -->
+
+      <div class="select-group">
+
+        <button id="button" class="btn-sort">
+          <span id="select-label" class="btn-text">Popularité</span>
+          <div id="arrow" class="btn-arrow"></div>
+        </button>
+        
+        <div class="dropdown hidden" id="dropdown">
+          <input type="radio" id="popularite" name="where" value="date" class="option">
+          <label for="popularite" class="select-item">Popularité</label>
+
+          <input type="radio" id="date" name="where" value="date" class="option">
+          <label for="date" class="select-item">Date</label>
+  
+          <input type="radio" id="title" name="where" value="title" class="option">
+          <label for="title" class="select-item">Titre</label>
+        </div>
+        
       </div>
+      
       <div class="photographerGalery"></div>
       <div class="total-like-content" aria-label="total des likes et tarif journalier"></div>
       

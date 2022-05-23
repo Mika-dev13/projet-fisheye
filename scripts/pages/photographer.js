@@ -63,7 +63,7 @@ async function init() {
 	// eslint-disable-next-line no-undef
 	Lightbox.init();
 	// eslint-disable-next-line no-undef
-	sortPhoto(media);
+	// sortPhoto(media);
 	// eslint-disable-next-line no-undef
 	trapFocus(modal);  
 }
