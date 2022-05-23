@@ -168,12 +168,13 @@ function getTotalLike(data, photographers) {
 	}
 }
 
-// ======================= FONCTION DE TRIE ===========================
+// ======================= FONCTIONNALITE DU SELECT ===========================
 
 const button = document.querySelector("#button");
 const selectDropdown = document.querySelector("#dropdown");
 const options = document.querySelectorAll(".option");
 const selectLabel = document.querySelector("#select-label");
+const photographerGalery = document.querySelector(".photographerGalery");
 
 button.addEventListener("click", function (e) {
 	e.preventDefault();
@@ -184,23 +185,36 @@ function toggleHidden() {
 	selectDropdown.classList.toggle("hidden");
 }
 
+function setSelectTitle(e) {
+	const labelElement = document.querySelector(`label[for="${e.target.id}"]`).innerText;
+	selectLabel.innerText = labelElement;
+	toggleHidden();
+}
+
+// ======================= FONCTION DE TRIE ===========================
+
 options.forEach(function(option) {
+	
 	option.addEventListener("click", function (e) {
 		setSelectTitle(e);
+
 		const labelElement = document.querySelector(`label[for="${e.target.id}"]`).textContent;
-		// const selectedValue = select.value;
+
 		photographerGalery.innerHTML = "";
 
 		switch (labelElement) {
 		case "Popularité": {
+			// eslint-disable-next-line no-undef
 			media.sort((a, b) => b.likes - a.likes);
 		}
 			break;
 		case "Date": {
+			// eslint-disable-next-line no-undef
 			media.sort((a, b) => new Date(a.date) - new Date(b.date));
 		}
 			break;
 		case "Titre": {
+			// eslint-disable-next-line no-undef
 			media.sort((a, b) => {
 				if (a.title < b.title) { return -1; }
 			});
@@ -214,57 +228,6 @@ options.forEach(function(option) {
 	});
 });
 
-function setSelectTitle(e) {
-	const labelElement = document.querySelector(`label[for="${e.target.id}"]`).innerText;
-	selectLabel.innerText = labelElement;
-	toggleHidden();
-}
 
 
-const select = document.getElementById("select");
-const photographerGalery = document.querySelector(".photographerGalery");
 
-// eslint-disable-next-line no-unused-vars
-// function sortPhoto(media) {
-	
-// 	selectDropdown.addEventListener("click", (e) => {
-// 		const labelElement = document.querySelector(`label[for="${e.target.id}"]`).textContent;
-// 		// const selectedValue = select.value;
-// 		photographerGalery.innerHTML = "";
-
-// 		switch (labelElement) {
-// 		case "Popularité": {
-// 			media.sort((a, b) => b.likes - a.likes);
-// 		}
-// 			break;
-// 		case "Date": {
-// 			media.sort((a, b) => new Date(a.date) - new Date(b.date));
-// 		}
-// 			break;
-// 		case "Titre": {
-// 			media.sort((a, b) => {
-// 				if (a.title < b.title) { return -1; }
-// 			});
-// 		}
-// 			break;
-// 		}
-// 		// eslint-disable-next-line no-undef
-// 		displayDataGalery(media);
-// 		// eslint-disable-next-line no-undef
-// 		Lightbox.init();
-// 	});
-// }
-
-
-// const dropdown = document.querySelector(".btn-sort");
-// const ulSort = document.querySelector(".ul-sort");
-
-// dropdown.addEventListener("click", () => {
-// 	if(ulSort.style.display === "none") {
-// 		ulSort.style = "display: block";
-// 	} else {
-// 		ulSort.style = "display: none";
-// 	}
-	
-	
-// });
