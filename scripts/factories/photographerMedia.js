@@ -173,6 +173,7 @@ function getTotalLike(data, photographers) {
 const button = document.querySelector("#button");
 const selectDropdown = document.querySelector("#dropdown");
 const options = document.querySelectorAll(".option");
+const selectItems = document.querySelectorAll(".select-item");
 const selectLabel = document.querySelector("#select-label");
 const photographerGalery = document.querySelector(".photographerGalery");
 const btnArrow = document.querySelector(".btn-arrow");
@@ -194,43 +195,78 @@ function setSelectTitle(e) {
 	toggleHidden();
 }
 
-// ======================= FONCTION DE TRIE ===========================
+// ======================= FONCTION DE TRIE DU SELECT ===========================
 
-options.forEach(function(option) {
+function sort() {
+	options.forEach((option) => {
 	
-	option.addEventListener("click", function (e) {
-		setSelectTitle(e);
-
-		const labelElement = document.querySelector(`label[for="${e.target.id}"]`).textContent;
-
-		photographerGalery.innerHTML = "";
-
-		switch (labelElement) {
-		case "Popularité": {
+		option.addEventListener("click", (e) => {
+			setSelectTitle(e);
+			const labelElement = document.querySelector(`label[for="${e.target.id}"]`).textContent;
+			photographerGalery.innerHTML = "";
+	
+			switch (labelElement) {
+			case "Popularité": {
+				// eslint-disable-next-line no-undef
+				media.sort((a, b) => b.likes - a.likes);
+			}
+				break;
+			case "Date": {
+				// eslint-disable-next-line no-undef
+				media.sort((a, b) => new Date(a.date) - new Date(b.date));
+			}
+				break;
+			case "Titre": {
+				// eslint-disable-next-line no-undef
+				media.sort((a, b) => {
+					if (a.title < b.title) { return -1; }
+				});
+			}
+				break;
+			}
 			// eslint-disable-next-line no-undef
-			media.sort((a, b) => b.likes - a.likes);
-		}
-			break;
-		case "Date": {
+			displayDataGalery(media);
 			// eslint-disable-next-line no-undef
-			media.sort((a, b) => new Date(a.date) - new Date(b.date));
-		}
-			break;
-		case "Titre": {
-			// eslint-disable-next-line no-undef
-			media.sort((a, b) => {
-				if (a.title < b.title) { return -1; }
-			});
-		}
-			break;
-		}
-		// eslint-disable-next-line no-undef
-		displayDataGalery(media);
-		// eslint-disable-next-line no-undef
-		Lightbox.init();
-	});
-});
+			Lightbox.init();
+		});
+	});	
 
+	for(let item of selectItems) {
+		item.addEventListener("keydown", (e) => {
+			const itemTexContent = item.textContent;
+			if(e.key === "Enter") {
 
+				photographerGalery.innerHTML = "";
+				selectLabel.innerText = e.target.textContent;
+				toggleHidden();
+
+				switch (itemTexContent) {
+				case "Popularité": {
+					// eslint-disable-next-line no-undef
+					media.sort((a, b) => b.likes - a.likes);
+				}
+					break;
+				case "Date": {
+					// eslint-disable-next-line no-undef
+					media.sort((a, b) => new Date(a.date) - new Date(b.date));
+				}
+					break;
+				case "Titre": {
+					// eslint-disable-next-line no-undef
+					media.sort((a, b) => {
+						if (a.title < b.title) { return -1; }
+					});
+				}
+					break;
+				}
+				// eslint-disable-next-line no-undef
+				displayDataGalery(media);
+				// eslint-disable-next-line no-undef
+				Lightbox.init();
+			}
+		});	
+	}
+}
+sort();
 
 

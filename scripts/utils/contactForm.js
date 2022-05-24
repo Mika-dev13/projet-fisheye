@@ -128,8 +128,6 @@ function validate() {
 			console.log(`Message: ${messageValue}`);
 			closeModal();
 			clearForm();
-		} else {
-			console.log("arrrrhhhh");
 		}
 	});
 }

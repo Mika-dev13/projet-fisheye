@@ -16,6 +16,7 @@ body {
     background-color: #FAFAFA;
     height: 300px;
     padding: 0 25px;
+    border-radius: 5px;
 }
 
 .photograph-header .photographerProfile {
@@ -116,6 +117,11 @@ body {
     font-weight: 700;
 }
 
+.select-text {
+    padding-right: 20px;
+    font-size: 18px;
+}
+
 .btn-sort {
     display: flex;
     justify-content: space-between;
@@ -124,7 +130,6 @@ body {
     color: white;
     padding: 20px;
     border: none;
-    outline: none;
     border-radius: 5px;
 }
 
@@ -150,12 +155,23 @@ body {
     position: absolute;
     z-index: 100;
     top: 60px;
+    left: 89px;
     width: 170px;
     color: white;
     background-color: #901C1C;
     padding: 0 20px;
     border-radius: 5px;
     margin-top: -5px;
+    border: none;
+}
+
+.select-legend {
+    position: absolute;
+    left: -10000em;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
 }
 
 .option {
@@ -164,8 +180,13 @@ body {
 
 .select-item {
     display: block;
-    padding: 10px 0;
+    padding: 15px 0;
     border-top: solid 2px white;
+    transition: opacity .3s;
+}
+
+.select-item:hover {
+    opacity: 0.7;
 }
 
 .hidden {
