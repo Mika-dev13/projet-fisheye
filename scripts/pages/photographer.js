@@ -66,6 +66,8 @@ async function init() {
 	// sortPhoto(media);
 	// eslint-disable-next-line no-undef
 	trapFocus(modal);  
+	// eslint-disable-next-line no-undef
+	sort();
 }
 init();
 

@@ -197,33 +197,39 @@ function setSelectTitle(e) {
 
 // ======================= FONCTION DE TRIE DU SELECT ===========================
 
+// eslint-disable-next-line no-unused-vars
 function sort() {
+
+	function switchData(Element){
+		switch (Element) {
+		case "Popularité": {
+			// eslint-disable-next-line no-undef
+			media.sort((a, b) => b.likes - a.likes);
+		}
+			break;
+		case "Date": {
+			// eslint-disable-next-line no-undef
+			media.sort((a, b) => new Date(a.date) - new Date(b.date));
+		}
+			break;
+		case "Titre": {
+			// eslint-disable-next-line no-undef
+			media.sort((a, b) => {
+				if (a.title < b.title) { return -1; }
+			});
+		}
+			break;
+		}
+	}
+
 	options.forEach((option) => {
 	
 		option.addEventListener("click", (e) => {
 			setSelectTitle(e);
 			const labelElement = document.querySelector(`label[for="${e.target.id}"]`).textContent;
 			photographerGalery.innerHTML = "";
-	
-			switch (labelElement) {
-			case "Popularité": {
-				// eslint-disable-next-line no-undef
-				media.sort((a, b) => b.likes - a.likes);
-			}
-				break;
-			case "Date": {
-				// eslint-disable-next-line no-undef
-				media.sort((a, b) => new Date(a.date) - new Date(b.date));
-			}
-				break;
-			case "Titre": {
-				// eslint-disable-next-line no-undef
-				media.sort((a, b) => {
-					if (a.title < b.title) { return -1; }
-				});
-			}
-				break;
-			}
+			
+			switchData(labelElement);
 			// eslint-disable-next-line no-undef
 			displayDataGalery(media);
 			// eslint-disable-next-line no-undef
@@ -234,31 +240,14 @@ function sort() {
 	for(let item of selectItems) {
 		item.addEventListener("keydown", (e) => {
 			const itemTexContent = item.textContent;
+			
 			if(e.key === "Enter") {
-
 				photographerGalery.innerHTML = "";
 				selectLabel.innerText = e.target.textContent;
 				toggleHidden();
 
-				switch (itemTexContent) {
-				case "Popularité": {
-					// eslint-disable-next-line no-undef
-					media.sort((a, b) => b.likes - a.likes);
-				}
-					break;
-				case "Date": {
-					// eslint-disable-next-line no-undef
-					media.sort((a, b) => new Date(a.date) - new Date(b.date));
-				}
-					break;
-				case "Titre": {
-					// eslint-disable-next-line no-undef
-					media.sort((a, b) => {
-						if (a.title < b.title) { return -1; }
-					});
-				}
-					break;
-				}
+				switchData(itemTexContent);
+				
 				// eslint-disable-next-line no-undef
 				displayDataGalery(media);
 				// eslint-disable-next-line no-undef
@@ -267,6 +256,6 @@ function sort() {
 		});	
 	}
 }
-sort();
+
 
 
